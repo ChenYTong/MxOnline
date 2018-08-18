@@ -136,3 +136,7 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)

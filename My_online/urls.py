@@ -16,7 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 # from django.contrib import admin
 import xadmin
+from django.views.generic import TemplateView
+
+from users.views import LoginView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    # url(r'^login/$', TemplateView.as_view(template_name='login.html'), name='login'),
+    # url(r'^login/$', views.user_login, name='login')
+    url(r'^login/$', LoginView.as_view(), name='login')
 ]
