@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.backends import ModelBackend
 from django.views import View
 
-from users.froms import LoginForm, RegisterForm
+from users.froms import LoginForm, RegisterForm, ForgetPwdForm
 from utils.email_send import send_register_email
 from .models import UserProfile, EmailVerifyRecord
 from django.db.models import Q
@@ -98,3 +98,18 @@ class ActiveUserView(View):
         # 自己瞎输的验证码
         else:
             return render(request, "register.html", {"msg": "您的激活链接无效"})
+
+
+class ForgetPwdView(View):
+    def get(self, request):
+        forget_form = ForgetPwdForm()
+        return render(request, 'forgetpwd.html', {'forget_form': forget_form})
+
+    def post(self, request):
+        forget_form = ForgetPwdForm(request.POST)
+        if forget_form.is_valid():
+            email = request.POST.get('email', None)
+            send_register_email(email, 'forget')
+            return render(request, 'send_success.html')
+        else:
+            return render(request, 'forgetpwd.html', {'forget_form': forget_form})

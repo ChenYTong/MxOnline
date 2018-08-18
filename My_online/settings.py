@@ -146,5 +146,5 @@ EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = 25
 EMAIL_HOST_USER = "604367682@qq.com"
 EMAIL_HOST_PASSWORD = "sneccvmsnmoybcji"
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_FROM = "604367682@qq.com"
