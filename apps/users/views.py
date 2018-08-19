@@ -137,7 +137,7 @@ class ModifyPwdView(View):
             pwd2 = request.POST.get("password2", "")
             email = request.POST.get("email", "")
             if pwd1 != pwd2:
-                return render(request, "password_reset.html", {"email":email, "msg":"密码不一致！"})
+                return render(request, "password_reset.html", {"email": email, "msg":"密码不一致！"})
             user = UserProfile.objects.get(email=email)
             user.password = make_password(pwd2)
             user.save()
@@ -145,4 +145,4 @@ class ModifyPwdView(View):
             return render(request, "login.html")
         else:
             email = request.POST.get("email", "")
-            return render(request, "password_reset.html", {"email":email, "modify_form":modify_form })
+            return render(request, "password_reset.html", {"email": email, "modify_form": modify_form})
