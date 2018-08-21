@@ -14,17 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-# from django.contrib import admin
 import xadmin
 from django.views.generic import TemplateView
 
 from users.views import LoginView, RegisterView, ActiveUserView, ForgetPwdView, ResetView, ModifyPwdView
-
+from organization.views import OrgView
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
-    # url(r'^login/$', TemplateView.as_view(template_name='login.html'), name='login'),
-    # url(r'^login/$', views.user_login, name='login')
     url(r'captcha/', include('captcha.urls')),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
@@ -32,5 +29,5 @@ urlpatterns = [
     url(r'^forget/$', ForgetPwdView.as_view(), name='forget_pwd'),
     url(r'^reset/(?P<active_code>.*)/$', ResetView.as_view(), name='reset_pwd'),
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name='modify_pwd'),
-    url(r'addd/$', sadasdasd)
+    url(r'^org_list/$', OrgView.as_view(), name='org_list')
 ]

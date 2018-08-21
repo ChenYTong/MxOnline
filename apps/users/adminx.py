@@ -42,7 +42,7 @@ class BannerAdmin(object):
 
 xadmin.site.register(Banner, BannerAdmin)
 
-xadmin.site.register(views.BaseAdminView,BaseSetting)
+xadmin.site.register(views.BaseAdminView, BaseSetting)
 
 # 将title和footer信息进行注册
-xadmin.site.register(views.CommAdminView,GlobalSettings)
+xadmin.site.register(views.CommAdminView, GlobalSettings)
